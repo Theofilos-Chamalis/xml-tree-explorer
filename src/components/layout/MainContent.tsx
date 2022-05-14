@@ -1,5 +1,7 @@
 import { FunctionComponent, useEffect } from 'react';
 import styled from '@emotion/styled';
+import FileUploader from '../FileUploader';
+import TreeViewer from '../TreeViewer';
 
 interface MainContentProps {}
 
@@ -23,7 +25,12 @@ const MainContent: FunctionComponent<MainContentProps> = ({}) => {
   // Perform logic just after the page is mounted.
   useEffect(() => {}, []);
 
-  return <StyledContainerDiv></StyledContainerDiv>;
+  return (
+    <StyledContainerDiv>
+      <FileUploader />
+      <TreeViewer />
+    </StyledContainerDiv>
+  );
 };
 
 export default MainContent;

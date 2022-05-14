@@ -2,7 +2,9 @@ import { FunctionComponent } from 'react';
 import { AppShell } from '@mantine/core';
 import MainHeader from './MainHeader';
 
-interface MainContainerProps {}
+interface MainContainerProps {
+  children?: React.ReactNode;
+}
 
 /**
  * A wrapper component of the FE application's main content. It is used

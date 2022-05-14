@@ -1,6 +1,6 @@
 import { FunctionComponent } from 'react';
-import MainContainer from './components/MainContainer';
-import MainContent from './components/MainContent';
+import MainContainer from './components/layout/MainContainer';
+import MainContent from './components/layout/MainContent';
 
 interface AppProps {}
 
