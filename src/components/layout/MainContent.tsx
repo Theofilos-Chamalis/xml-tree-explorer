@@ -6,9 +6,15 @@ import { Button, Modal } from '@mantine/core';
 
 interface MainContentProps {}
 
+export interface FileProps extends File {
+  path?: string;
+  stringContent?: string | null;
+  jsXMLObject?: any;
+}
+
 export interface FileStateProps {
   error: string | null;
-  fileProps: File | null;
+  fileProps: FileProps | null;
 }
 
 const StyledContainerDiv = styled.div`
@@ -47,19 +53,22 @@ const MainContent: FunctionComponent<MainContentProps> = ({}) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [xmlFile, setXmlFile] = useState<FileStateProps>({ error: null, fileProps: null });
   const [processStep, setProcessStep] = useState(1);
+  const [isProcessingXMLFile, setIsProcessingXMLFile] = useState(false);
 
   useEffect(() => {
     if (xmlFile.error) {
       return setIsModalOpen(true);
     }
 
-    if (xmlFile.fileProps) {
-      return setProcessStep(2);
+    if (xmlFile.fileProps?.jsXMLObject) {
+      setProcessStep(2);
+      setIsProcessingXMLFile(false);
     }
   }, [xmlFile]);
 
   const clearModalState = () => {
     setXmlFile({ error: null, fileProps: null });
+    setIsProcessingXMLFile(false);
     setIsModalOpen(false);
   };
 
@@ -88,7 +97,11 @@ const MainContent: FunctionComponent<MainContentProps> = ({}) => {
         </Button>
       </Modal>
       <StyledFileUploaderContainerDiv processStep={processStep}>
-        <FileUploader setXmlFile={setXmlFile} />
+        <FileUploader
+          setXmlFile={setXmlFile}
+          setIsProcessingXMLFile={setIsProcessingXMLFile}
+          isProcessingXMLFile={isProcessingXMLFile}
+        />
       </StyledFileUploaderContainerDiv>
       <StyledTreeViewerContainerDiv processStep={processStep}>
         <TreeViewer clearXMLTreeState={clearXMLTreeState} />

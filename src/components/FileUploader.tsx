@@ -3,9 +3,12 @@ import { Dropzone } from '@mantine/dropzone';
 import styled from '@emotion/styled';
 import { Image } from '@mantine/core';
 import { FileStateProps } from './layout/MainContent';
+import { readAndParseIncomingFile } from '../utils/utils';
 
 interface FileUploaderProps {
   setXmlFile: (xmlFileProps: FileStateProps) => void;
+  setIsProcessingXMLFile: (isProcessing: boolean) => void;
+  isProcessingXMLFile: boolean;
 }
 
 const StyledUploaderContent = styled.div`
@@ -40,8 +43,12 @@ const StyledUploaderTextContainer = styled.div`
   flex-direction: column;
 `;
 
-const FileUploader: FunctionComponent<FileUploaderProps> = ({ setXmlFile }) => {
-  const fileSizeMBLimit = 2;
+const FileUploader: FunctionComponent<FileUploaderProps> = ({
+  setXmlFile,
+  setIsProcessingXMLFile,
+  isProcessingXMLFile,
+}) => {
+  const fileSizeMBLimit = 5;
 
   const dropzoneChildren = () => (
     <StyledUploaderContent>
@@ -61,12 +68,12 @@ const FileUploader: FunctionComponent<FileUploaderProps> = ({ setXmlFile }) => {
     <>
       <h1>1. First, upload your file</h1>
       <Dropzone
-        onDrop={files => setXmlFile({ error: null, fileProps: files[0] })}
+        onDrop={files => readAndParseIncomingFile(files[0], setXmlFile, setIsProcessingXMLFile)}
         onReject={files =>
           setXmlFile({ error: files[0].errors[0].message, fileProps: files[0].file })
         }
         multiple={false}
-        loading={false}
+        loading={isProcessingXMLFile}
         maxSize={fileSizeMBLimit * 1024 ** 2}
         accept={['text/xml']}
         radius={18}>
