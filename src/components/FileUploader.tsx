@@ -1,13 +1,11 @@
-import { FunctionComponent, useEffect, useState } from 'react';
+import { FunctionComponent } from 'react';
 import { Dropzone } from '@mantine/dropzone';
 import styled from '@emotion/styled';
-import { Button, Image, Modal } from '@mantine/core';
+import { Image } from '@mantine/core';
+import { FileStateProps } from './layout/MainContent';
 
-interface FileUploaderProps {}
-
-interface FileStateProps {
-  error: string | null;
-  fileProps: File | null;
+interface FileUploaderProps {
+  setXmlFile: (xmlFileProps: FileStateProps) => void;
 }
 
 const StyledUploaderContent = styled.div`
@@ -42,16 +40,8 @@ const StyledUploaderTextContainer = styled.div`
   flex-direction: column;
 `;
 
-const FileUploader: FunctionComponent<FileUploaderProps> = ({}) => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [xmlFile, setXmlFile] = useState<FileStateProps>({ error: null, fileProps: null });
+const FileUploader: FunctionComponent<FileUploaderProps> = ({ setXmlFile }) => {
   const fileSizeMBLimit = 2;
-
-  useEffect(() => {
-    if (xmlFile.error) {
-      setIsModalOpen(true);
-    }
-  }, [xmlFile]);
 
   const dropzoneChildren = () => (
     <StyledUploaderContent>
@@ -69,23 +59,6 @@ const FileUploader: FunctionComponent<FileUploaderProps> = ({}) => {
 
   return (
     <>
-      <Modal
-        opened={isModalOpen}
-        centered={true}
-        size={'sm'}
-        styles={{
-          header: { margin: '-18px -16px 0 0' },
-          close: { color: 'black', width: 60, height: 60 },
-        }}
-        closeOnEscape={true}
-        onClose={() => setIsModalOpen(false)}
-        title={<h2>File upload failed!</h2>}>
-        <p>{xmlFile.error}. Please enter a valid XML file and try again later.</p>
-        <br />
-        <Button fullWidth={true} onClick={() => setIsModalOpen(false)} color={'cyan'}>
-          Try again
-        </Button>
-      </Modal>
       <h1>1. First, upload your file</h1>
       <Dropzone
         onDrop={files => setXmlFile({ error: null, fileProps: files[0] })}
