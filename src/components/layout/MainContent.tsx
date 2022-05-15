@@ -2,8 +2,8 @@ import { FunctionComponent, useEffect, useState } from 'react';
 import styled from '@emotion/styled';
 import FileUploader from '../FileUploader';
 import TreeViewer from '../TreeViewer';
-import { Button, Modal } from '@mantine/core';
 import SlidingAnimationContainer from './SlidingAnimationContainer';
+import ErrorModal from '../ErrorModal';
 
 export interface XMLFileProps extends File {
   path?: string;
@@ -39,9 +39,7 @@ const MainContent: FunctionComponent = () => {
   const [isProcessingXMLFile, setIsProcessingXMLFile] = useState(false);
 
   useEffect(() => {
-    if (xmlFile.error) {
-      return setIsModalOpen(true);
-    }
+    if (xmlFile.error) return setIsModalOpen(true);
 
     if (xmlFile.fileProps?.jsXMLObject) {
       setProcessStep(2);
@@ -55,30 +53,14 @@ const MainContent: FunctionComponent = () => {
     setIsModalOpen(false);
   };
 
-  const clearXMLTreeState = () => {
+  const clearXMLState = () => {
     setXmlFile({ error: null, fileProps: null });
     setProcessStep(1);
   };
 
   return (
     <StyledContainerDiv>
-      <Modal
-        opened={isModalOpen}
-        centered={true}
-        size={'sm'}
-        styles={{
-          header: { margin: '-18px -16px 0 0' },
-          close: { color: 'black', width: 60, height: 60 },
-        }}
-        closeOnEscape={true}
-        onClose={() => clearModalState()}
-        title={<h2>File upload failed!</h2>}>
-        <p>{xmlFile.error}. Please enter a valid XML file and try again later.</p>
-        <br />
-        <Button fullWidth={true} onClick={() => clearModalState()} color={'indigo'}>
-          Try again
-        </Button>
-      </Modal>
+      <ErrorModal isModalOpen={isModalOpen} clearModalState={clearModalState} xmlFile={xmlFile} />
       <SlidingAnimationContainer currentProcessStep={processStep} ownProcessStep={1}>
         <FileUploader
           setXmlFile={setXmlFile}
@@ -87,7 +69,7 @@ const MainContent: FunctionComponent = () => {
         />
       </SlidingAnimationContainer>
       <SlidingAnimationContainer currentProcessStep={processStep} ownProcessStep={2}>
-        <TreeViewer clearXMLTreeState={clearXMLTreeState} />
+        <TreeViewer clearXMLTreeState={clearXMLState} />
       </SlidingAnimationContainer>
     </StyledContainerDiv>
   );
