@@ -3,18 +3,17 @@ import styled from '@emotion/styled';
 import FileUploader from '../FileUploader';
 import TreeViewer from '../TreeViewer';
 import { Button, Modal } from '@mantine/core';
+import SlidingAnimationContainer from './SlidingAnimationContainer';
 
-interface MainContentProps {}
-
-export interface FileProps extends File {
+export interface XMLFileProps extends File {
   path?: string;
   stringContent?: string | null;
   jsXMLObject?: any;
 }
 
-export interface FileStateProps {
+export interface XMLStateProps {
   error: string | null;
-  fileProps: FileProps | null;
+  fileProps: XMLFileProps | null;
 }
 
 const StyledContainerDiv = styled.div`
@@ -25,22 +24,6 @@ const StyledContainerDiv = styled.div`
   padding-top: 24px;
 `;
 
-interface StyledFileUploaderContainerDivProps {
-  processStep: number;
-}
-
-const StyledFileUploaderContainerDiv = styled.div<StyledFileUploaderContainerDivProps>`
-  transition: all 0.6s ${({ processStep }) => (processStep === 1 ? '' : '1s')} ease-in-out;
-  opacity: ${({ processStep }) => (processStep === 1 ? '1' : '0')};
-  transform: translateY(${({ processStep }) => (processStep === 1 ? '0' : '-500px')});
-`;
-
-const StyledTreeViewerContainerDiv = styled.div<StyledFileUploaderContainerDivProps>`
-  transition: all 0.6s ${({ processStep }) => (processStep === 2 ? '1s' : '')} ease-in-out;
-  opacity: ${({ processStep }) => (processStep === 2 ? '1' : '0')};
-  transform: translateY(${({ processStep }) => (processStep === 2 ? '-346px' : '-500px')});
-`;
-
 /**
  * This component is responsible for rendering all the content below
  * the application's Header and for performing an API call to the BE
@@ -49,9 +32,9 @@ const StyledTreeViewerContainerDiv = styled.div<StyledFileUploaderContainerDivPr
  * @returns {JSX.Element}
  * @constructor
  */
-const MainContent: FunctionComponent<MainContentProps> = ({}) => {
+const MainContent: FunctionComponent = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [xmlFile, setXmlFile] = useState<FileStateProps>({ error: null, fileProps: null });
+  const [xmlFile, setXmlFile] = useState<XMLStateProps>({ error: null, fileProps: null });
   const [processStep, setProcessStep] = useState(1);
   const [isProcessingXMLFile, setIsProcessingXMLFile] = useState(false);
 
@@ -96,16 +79,16 @@ const MainContent: FunctionComponent<MainContentProps> = ({}) => {
           Try again
         </Button>
       </Modal>
-      <StyledFileUploaderContainerDiv processStep={processStep}>
+      <SlidingAnimationContainer currentProcessStep={processStep} ownProcessStep={1}>
         <FileUploader
           setXmlFile={setXmlFile}
           setIsProcessingXMLFile={setIsProcessingXMLFile}
           isProcessingXMLFile={isProcessingXMLFile}
         />
-      </StyledFileUploaderContainerDiv>
-      <StyledTreeViewerContainerDiv processStep={processStep}>
+      </SlidingAnimationContainer>
+      <SlidingAnimationContainer currentProcessStep={processStep} ownProcessStep={2}>
         <TreeViewer clearXMLTreeState={clearXMLTreeState} />
-      </StyledTreeViewerContainerDiv>
+      </SlidingAnimationContainer>
     </StyledContainerDiv>
   );
 };

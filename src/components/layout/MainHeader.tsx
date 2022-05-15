@@ -2,8 +2,6 @@ import { FunctionComponent } from 'react';
 import { Header } from '@mantine/core';
 import styled from '@emotion/styled';
 
-interface MainHeaderProps {}
-
 const StyledDivContainer = styled.div`
   display: flex;
   height: 100%;
@@ -27,7 +25,7 @@ const StyledHeaderTitle = styled.h1`
  * @returns {JSX.Element}
  * @constructor
  */
-const MainHeader: FunctionComponent<MainHeaderProps> = ({}) => {
+const MainHeader: FunctionComponent = () => {
   return (
     <Header height={60} p="xs">
       <StyledDivContainer>
