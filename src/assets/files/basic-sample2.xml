@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CEO xmlns="https://google.com">
+  <Manager TestId="0001" TestType="BUS">
+    <Foreman1 TestId="0002" TestType="GUI">
+      <Worker1>Another Test1</Worker1>
+      <Worker2>Another Test2</Worker2>
+      <WorkerHouse>
+        <Worker3>Another Test3</Worker3>
+        <Worker4>Another Test4</Worker4>
+      </WorkerHouse>
+    </Foreman1>
+    <Foreman2 TestId="0003" TestType="CMD">
+      <Worker5>Another Test5</Worker5>
+      <Worker6>Another Test6</Worker6>
+    </Foreman2>
+  </Manager>
+</CEO>

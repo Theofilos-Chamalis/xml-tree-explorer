@@ -4,12 +4,14 @@ A simple frontend application that allows a user to upload an XML file and view 
 
 ## Screenshots
 
-![Desktop Screenshot](https://i.imgur.com/hello.png)
-![Mobile Screenshot](https://i.imgur.com/hello.png)
+![Desktop Screenshot 1](https://i.imgur.com/h06vYTZ.png)
+![Desktop Screenshot 2](https://i.imgur.com/6Jn7SAT.png)
+![Mobile Screenshot 1](https://i.imgur.com/kV2TPM7.png)
+![Mobile Screenshot 2](https://i.imgur.com/VeNaYdm.png)
 
 ## Tech Stack
 
-**Client:** React, Typescript, Vite, EmotionCSS, Mantine
+**Client:** React, Typescript, Vite, EmotionCSS, Mantine, Fast XML Parser, React D3 Tree
 
 ## Install & Run Locally
 
