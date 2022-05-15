@@ -4,10 +4,10 @@ A simple frontend application that allows a user to upload an XML file and view 
 
 ## Screenshots
 
-![Desktop Screenshot 1](https://i.imgur.com/h06vYTZ.png)
-![Desktop Screenshot 2](https://i.imgur.com/6Jn7SAT.png)
-![Mobile Screenshot 1](https://i.imgur.com/kV2TPM7.png)
-![Mobile Screenshot 2](https://i.imgur.com/VeNaYdm.png)
+![Desktop Screenshot 1](https://i.imgur.com/h06vYTZl.png)
+![Desktop Screenshot 2](https://i.imgur.com/6Jn7SATl.png)
+![Mobile Screenshot 1](https://i.imgur.com/kV2TPM7l.png)
+![Mobile Screenshot 2](https://i.imgur.com/VeNaYdml.png)
 
 ## Tech Stack
 
