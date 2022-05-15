@@ -49,6 +49,14 @@ const StyledInstructionLines = styled.p`
   margin-top: -6px;
 `;
 
+/**
+ * Component that is responsible for presenting the instruction steps
+ * to explore the tree presented via the TreeViewer.
+ *
+ * @param {boolean} inline
+ * @returns {JSX.Element}
+ * @constructor
+ */
 const TreeViewerInstructions: FunctionComponent<TreeViewerInstructionsProps> = ({ inline }) => {
   const instructionsContent = (
     <>

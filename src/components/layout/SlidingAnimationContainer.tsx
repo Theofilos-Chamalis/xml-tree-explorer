@@ -26,6 +26,16 @@ const StyledAnimationContainerDiv = styled.div<StyledSlidingAnimationContainerDi
     ease-in-out;
 `;
 
+/**
+ * Wrapper component that is responsible for animating (with opacity and Y-axis movement)
+ * the FileUploader and the TreeViewer components.
+ *
+ * @param {React.ReactElement<any, string | React.JSXElementConstructor<any>> | string | number | Iterable<React.ReactNode> | React.ReactPortal | boolean | null | undefined} children
+ * @param {number} currentProcessStep
+ * @param {number} ownProcessStep
+ * @returns {JSX.Element}
+ * @constructor
+ */
 const SlidingAnimationContainer: FunctionComponent<SlidingAnimationContainerProps> = ({
   children,
   currentProcessStep,

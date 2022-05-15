@@ -38,6 +38,13 @@ const StyledUploaderTextContainer = styled.div`
   flex-direction: column;
 `;
 
+/**
+ * The content that is shown inside the File Uploader component.
+ *
+ * @param {number} fileSizeLimitInMB
+ * @returns {JSX.Element}
+ * @constructor
+ */
 const FileUploaderContent: FunctionComponent<FileUploaderContentProps> = ({
   fileSizeLimitInMB,
 }) => {

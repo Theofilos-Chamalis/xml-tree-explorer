@@ -30,8 +30,8 @@ const StyledContainerDiv = styled.div`
 
 /**
  * This component is responsible for rendering all the content below
- * the application's Header and for performing an API call to the BE
- * to fetch the list of construction companies.
+ * the application's Header and for holding all state that is used
+ * in its children.
  *
  * @returns {JSX.Element}
  * @constructor
@@ -42,8 +42,12 @@ const MainContent: FunctionComponent = () => {
   const [processStep, setProcessStep] = useState(1);
   const [isProcessingXMLFile, setIsProcessingXMLFile] = useState(false);
 
+  // We add artificial delay to the "uploading" feature so that
+  // we can view the loading state.
   const artificialSecondsDelay = 0.8;
 
+  // If there is an error in the xmlFile state object, then show the ErrorModal.
+  // If the jsXMLObject property is present proceed to the 2nd view of the app.
   useEffect(() => {
     if (xmlFile.error) return setIsModalOpen(true);
 
@@ -55,12 +59,14 @@ const MainContent: FunctionComponent = () => {
     }
   }, [xmlFile]);
 
+  // Clear all required state when the Error Modal is dismissed.
   const clearModalState = () => {
     setXmlFile({ error: null, fileProps: null });
     setIsProcessingXMLFile(false);
     setIsModalOpen(false);
   };
 
+  // Clear just the XML state object where needed and return to step 1.
   const clearXMLState = () => {
     setXmlFile({ error: null, fileProps: null });
     setProcessStep(1);

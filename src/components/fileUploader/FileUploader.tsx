@@ -10,11 +10,22 @@ interface FileUploaderProps {
   isProcessingXMLFile: boolean;
 }
 
+/**
+ * Component that provides the UI functionality to read
+ * a XML file from user's device.
+ *
+ * @param {(xmlFileProps: XMLStateProps) => void} setXmlFile
+ * @param {(isProcessing: boolean) => void} setIsProcessingXMLFile
+ * @param {boolean} isProcessingXMLFile
+ * @returns {JSX.Element}
+ * @constructor
+ */
 const FileUploader: FunctionComponent<FileUploaderProps> = ({
   setXmlFile,
   setIsProcessingXMLFile,
   isProcessingXMLFile,
 }) => {
+  // Size limit for the file to be "uploaded".
   const fileSizeMBLimit = 5;
 
   return (

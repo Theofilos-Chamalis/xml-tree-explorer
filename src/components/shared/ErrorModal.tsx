@@ -8,6 +8,16 @@ export interface ErrorModalProps {
   clearModalState: () => void;
 }
 
+/**
+ * Modal component that wraps Mantine's Modal and which is shown when
+ * there are errors uploading, reading or parsing the XML file.
+ *
+ * @param {boolean} isModalOpen
+ * @param {XMLStateProps} xmlFile
+ * @param {() => void} clearModalState
+ * @returns {JSX.Element}
+ * @constructor
+ */
 const ErrorModal: FunctionComponent<ErrorModalProps> = ({
   isModalOpen,
   xmlFile,
