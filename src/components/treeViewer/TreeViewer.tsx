@@ -68,6 +68,16 @@ const TreeViewer: FunctionComponent<TreeViewerProps> = ({ clearXMLTreeState, xml
     ],
   };
 
+  const getInitialTreeXPosition = () => {
+    const screenWidth = window.innerWidth;
+
+    if (screenWidth > 899) return 400;
+
+    if (screenWidth < 899 && screenWidth > 600) return 280;
+
+    return 180;
+  };
+
   return (
     <>
       <TreeViewerTitleContainerDiv>
@@ -89,7 +99,12 @@ const TreeViewer: FunctionComponent<TreeViewerProps> = ({ clearXMLTreeState, xml
         <StyledTreeViewerCardContainerDiv>
           <TreeViewerInstructions inline={true} />
           <div style={{ width: '100%', height: '70vh' }}>
-            <Tree data={orgChart} orientation={'vertical'} scaleExtent={{ min: 0.25, max: 1 }} />
+            <Tree
+              data={orgChart}
+              orientation={'vertical'}
+              scaleExtent={{ min: 0.25, max: 1 }}
+              translate={{ x: getInitialTreeXPosition(), y: 16 }}
+            />
           </div>
         </StyledTreeViewerCardContainerDiv>
       )}
