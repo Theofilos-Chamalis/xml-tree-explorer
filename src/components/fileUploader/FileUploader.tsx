@@ -1,7 +1,7 @@
 import { FunctionComponent } from 'react';
 import { Dropzone } from '@mantine/dropzone';
-import { XMLStateProps } from './layout/MainContent';
-import { readAndParseIncomingFile } from '../utils/utils';
+import { XMLStateProps } from '../layout/MainContent';
+import { readAndParseIncomingFile } from '../../utils/utils';
 import FileUploaderContent from './FileUploaderContent';
 
 interface FileUploaderProps {

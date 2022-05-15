@@ -1,9 +1,9 @@
 import { FunctionComponent, useEffect, useState } from 'react';
 import styled from '@emotion/styled';
-import FileUploader from '../FileUploader';
-import TreeViewer from '../TreeViewer';
+import FileUploader from '../fileUploader/FileUploader';
+import TreeViewer from '../treeViewer/TreeViewer';
 import SlidingAnimationContainer from './SlidingAnimationContainer';
-import ErrorModal from '../ErrorModal';
+import ErrorModal from '../shared/ErrorModal';
 
 export interface XMLFileProps extends File {
   path?: string;
@@ -22,6 +22,10 @@ const StyledContainerDiv = styled.div`
   flex-direction: column;
   max-width: 960px;
   padding-top: 24px;
+  height: 100vh;
+  @media (max-width: 418.5px) {
+    padding-bottom: 240px;
+  }
 `;
 
 /**
@@ -38,12 +42,16 @@ const MainContent: FunctionComponent = () => {
   const [processStep, setProcessStep] = useState(1);
   const [isProcessingXMLFile, setIsProcessingXMLFile] = useState(false);
 
+  const artificialSecondsDelay = 0.8;
+
   useEffect(() => {
     if (xmlFile.error) return setIsModalOpen(true);
 
     if (xmlFile.fileProps?.jsXMLObject) {
       setProcessStep(2);
-      setIsProcessingXMLFile(false);
+      setTimeout(() => {
+        setIsProcessingXMLFile(false);
+      }, artificialSecondsDelay * 1000);
     }
   }, [xmlFile]);
 
@@ -69,7 +77,7 @@ const MainContent: FunctionComponent = () => {
         />
       </SlidingAnimationContainer>
       <SlidingAnimationContainer currentProcessStep={processStep} ownProcessStep={2}>
-        <TreeViewer clearXMLTreeState={clearXMLState} />
+        <TreeViewer clearXMLTreeState={clearXMLState} xmlFile={xmlFile} />
       </SlidingAnimationContainer>
     </StyledContainerDiv>
   );

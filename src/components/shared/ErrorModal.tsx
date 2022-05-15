@@ -1,6 +1,6 @@
 import { FunctionComponent } from 'react';
 import { Button, Modal } from '@mantine/core';
-import { XMLStateProps } from './layout/MainContent';
+import { XMLStateProps } from '../layout/MainContent';
 
 export interface ErrorModalProps {
   isModalOpen: boolean;
