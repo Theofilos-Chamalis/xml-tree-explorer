@@ -1,6 +1,7 @@
 import { FunctionComponent } from 'react';
 import { Image } from '@mantine/core';
 import styled from '@emotion/styled';
+import XMLIconUri from '/src/assets/xml.png';
 
 interface FileUploaderContentProps {
   fileSizeLimitInMB: number;
@@ -50,7 +51,7 @@ const FileUploaderContent: FunctionComponent<FileUploaderContentProps> = ({
 }) => {
   return (
     <StyledUploaderContent>
-      <Image src={'/src/assets/xml.png'} height={80} width={80} />
+      <Image src={XMLIconUri} height={80} width={80} />
       <StyledUploaderTextContainer>
         <StyledUploaderBodyText>
           Drag your XML file here or click to select one from your computer

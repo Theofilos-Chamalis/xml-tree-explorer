@@ -4,6 +4,7 @@ import { Button, Image } from '@mantine/core';
 import Tree from 'react-d3-tree';
 import { XMLStateProps } from '../layout/MainContent';
 import TreeViewerInstructions from './TreeViewerInstructions';
+import LeftIconUri from '/src/assets/left.png';
 // import { convertParsedXMLToTreeFormat } from '../../utils/utils';
 
 interface TreeViewerProps {
@@ -139,7 +140,7 @@ const TreeViewer: FunctionComponent<TreeViewerProps> = ({ clearXMLTreeState, xml
           color={'indigo'}
           onClick={() => clearXMLTreeState()}
           style={{ marginRight: -36 }}
-          leftIcon={<Image src={'/src/assets/left.png'} style={{ margin: '1px -32px 0 -16px' }} />}>
+          leftIcon={<Image src={LeftIconUri} style={{ margin: '1px -32px 0 -16px' }} />}>
           BACK
         </Button>
       </TreeViewerTitleContainerDiv>

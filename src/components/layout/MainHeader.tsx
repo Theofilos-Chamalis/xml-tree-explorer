@@ -1,6 +1,7 @@
 import { FunctionComponent } from 'react';
 import { Header } from '@mantine/core';
 import styled from '@emotion/styled';
+import headerLogoUri from '/src/assets/icon-192.png';
 
 const StyledDivContainer = styled.div`
   display: flex;
@@ -29,7 +30,7 @@ const MainHeader: FunctionComponent = () => {
   return (
     <Header height={60} p="xs">
       <StyledDivContainer>
-        <StyledImage src={'/src/assets/icon-192.png'} alt={'Header logo'} />
+        <StyledImage src={headerLogoUri} alt={'Header logo'} />
         <StyledHeaderTitle>XML TREE EXPLORER</StyledHeaderTitle>
       </StyledDivContainer>
     </Header>
